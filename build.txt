@@ -1,0 +1,4 @@
+displayName = Item Control
+author = Saschahi
+version = 1.0.3
+homepage = https://discord.gg/9dauEnQ

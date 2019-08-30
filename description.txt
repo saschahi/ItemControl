@@ -1,0 +1,20 @@
+Welcome to my 2nd Mod! If you like this mod you're sure to like my other Mod "NPC Control"!
+
+At the moment this mod has only 1 Feature:
+- Ban Items of your choosing (They're getting deleted and a Chat Message pops up)
+
+Hope this will help some Server Owners with their "Item Frame" problems and such.
+
+Also compatible with Items from other mods!
+
+How to use:
+1. Ingame go to settings
+2. Click Mod Configuration
+3. Click "Item Control: ItemConfig"
+4. Add Items of your choosing to the list
+5. Click Save after you put the banned items on the list.
+
+Note: This mod intentionally only works in multiplayer for now
+
+Planned features
+- Excempts for getting checked
