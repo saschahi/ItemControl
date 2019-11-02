@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Terraria.ModLoader;
 
 namespace ItemControl
 {
@@ -59,7 +60,8 @@ namespace ItemControl
                 string json = JsonConvert.SerializeObject(Hero, SerializerSettings);
                 File.WriteAllText(path, json);
             }
-            ItemEdit.Karl = mod.GetConfig<ItemConfig>();
+            //ItemEdit.Karl = mod.GetConfig<ItemConfig>();
+            ItemEdit.Karl = ModContent.GetInstance<ItemConfig>();
         }
 
         /*
