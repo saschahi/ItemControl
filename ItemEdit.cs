@@ -12,12 +12,16 @@ namespace ItemControl
         //public static int Timer = 3001;
         public static int Timer2 = 0;
         public static ItemConfig Karl = new ItemConfig();
+        public static int intervall = 30;
 
         public override void PreUpdate()
         {
-            if (Timer2 >= 30)
+            if (Timer2 >= intervall)
             {
-                
+                if (Karl == null)
+                {
+                    return;
+                }
                 /*if (Timer >= 3000)
                 {
                     Karl = mod.GetConfig<ItemConfig>();

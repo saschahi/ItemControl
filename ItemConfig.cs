@@ -45,12 +45,13 @@ namespace ItemControl
             return false;
         }
 
-        public static JsonSerializerSettings SerializerSettings => serializerSettings;
+        //public static JsonSerializerSettings SerializerSettings => serializerSettings;
 
         private ConfigSpagetthi Hero = new ConfigSpagetthi();
 
         public override void OnChanged()
         {
+            /*
             if (Main.netMode == NetmodeID.Server)
             {
                 Hero = new ConfigSpagetthi(Instance.BannedItems);
@@ -59,7 +60,7 @@ namespace ItemControl
                 string path = Path.Combine(ModConfigPath, filename);
                 string json = JsonConvert.SerializeObject(Hero, SerializerSettings);
                 File.WriteAllText(path, json);
-            }
+            }*/
             //ItemEdit.Karl = mod.GetConfig<ItemConfig>();
             ItemEdit.Karl = ModContent.GetInstance<ItemConfig>();
         }
@@ -69,7 +70,7 @@ namespace ItemControl
             from here on litterally EVERYTHING is copied from tmodloader lul. Pls fix configs not saving serverside.
 
         */
-
+        /*
         public static string ModConfigPath = Path.Combine(Main.SavePath, "Mod Configs");
 
         private static readonly IList<JsonConverter> converters = new List<JsonConverter>()
@@ -169,5 +170,6 @@ namespace ItemControl
             }
             return props;
         }
+        */
     }
 }
