@@ -9,7 +9,6 @@ namespace ItemControl
 {
     class ItemEdit : ModPlayer
     {
-        //public static int Timer = 3001;
         public static int Timer2 = 0;
         public static ItemConfig Karl = new ItemConfig();
         public static int intervall = 30;
@@ -22,10 +21,6 @@ namespace ItemControl
                 {
                     return;
                 }
-                /*if (Timer >= 3000)
-                {
-                    Karl = mod.GetConfig<ItemConfig>();
-                }*/
 
                 ItemDefinition test = new ItemDefinition();
 
@@ -34,9 +29,11 @@ namespace ItemControl
                     test = new ItemDefinition(item.type);
                     if (Karl.BannedItems.Contains(test))
                     {
-                        Main.NewText(item.Name + " is banned", Color.Red);
+                        if (Karl.sendMessages)
+                        {
+                            Main.NewText(item.Name + " is banned", Color.Red);
+                        }
                         item.TurnToAir();
-                        
                     }
                 }
 
@@ -44,7 +41,10 @@ namespace ItemControl
 
                 if(Karl.BannedItems.Contains(test))
                 {
-                    Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
+                    if (Karl.sendMessages)
+                    {
+                        Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
+                    }
                     Main.mouseItem.TurnToAir();
                 }
 
@@ -53,20 +53,15 @@ namespace ItemControl
                     test = new ItemDefinition(item.type);
                     if (Karl.BannedItems.Contains(test))
                     {
-                        Main.NewText(item.Name + " is banned", Color.Red);
+                        if (Karl.sendMessages)
+                        {
+                            Main.NewText(item.Name + " is banned", Color.Red);
+                        }
                         item.TurnToAir();
-                        
                     }
                 }
-                //Timer = 0;
-                
-                
             }
             Timer2++;
-            //Timer++;
         }
-
-
-        
     }
 }
