@@ -19,7 +19,7 @@ namespace ItemControl
             {
                 if (Karl == null)
                 {
-                    return;
+                    Karl = ModContent.GetInstance<ItemConfig>();
                 }
 
                 ItemDefinition test = new ItemDefinition();
