@@ -29,3 +29,4 @@ G:\Sascha\Dokumente\My Games\Terraria\ModLoader\Mod Sources\ItemControl\obj\Debu
 G:\Sascha\Dokumente\My Games\Terraria\ModLoader\Mod Sources\ItemControl\obj\Debug\net45\ItemControl.csproj.CopyComplete
 G:\Sascha\Dokumente\My Games\Terraria\ModLoader\Mod Sources\ItemControl\obj\Debug\net45\ItemControl.dll
 G:\Sascha\Dokumente\My Games\Terraria\ModLoader\Mod Sources\ItemControl\obj\Debug\net45\ItemControl.pdb
+G:\Sascha\Dokumente\My Games\Terraria\ModLoader\Mod Sources\ItemControl\obj\Debug\net45\ItemControl.csproj.CoreCompileInputs.cache

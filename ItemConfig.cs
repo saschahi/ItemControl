@@ -34,6 +34,14 @@ namespace ItemControl
         [Tooltip("The Intervall in Ticks that inventories are checked in. A intervall of 0 defaults to 30.")]
         public int intervall { get; set; } = new int();
 
+        [Label("Whitelist Administrators?")]
+        [Tooltip("Allows Itemcontrol-Admins to bypass the check")]
+        public bool Whitelist { get; set; } = new bool();
+
+        [Label("BEWARE")]
+        [Tooltip("Before a Administrator logs into herosmod, he is considered to be NOT an Admin. Items can still be removed this way.")]
+        public bool whitelistbeware { get; } = false;
+
         [Label("Banned Items")]
         [Tooltip("All Items in this list will be banned from possesion.")]
 
