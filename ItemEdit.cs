@@ -18,18 +18,39 @@ namespace ItemControl
 
         public override void PreUpdate()
         {
-            if(lastupdate == null)
+            if (Karl == null)
             {
+                Karl = ModContent.GetInstance<ItemConfig>();
                 lastupdate = DateTime.UtcNow;
-                //isAdmin = ItemControl.instance.herosmod.Call("HasPermission", , ItemControl.heropermission) is bool result && result;
-                isAdmin = ItemControl.instance.herosmod.Call("HasPermission", Main.myPlayer, ItemControl.heropermission) is bool result && result;
+                intervall = Karl.intervall;
             }
 
-            if(lastupdate.AddSeconds(whitelistintervall) < DateTime.UtcNow)
+            if (ItemControl.instance.herosmod != null)
             {
-                lastupdate = DateTime.UtcNow;
-                //isAdmin = ItemControl.instance.herosmod.Call("HasPermission", whoAmI, ItemControl.heropermission) is bool result && result;
-                isAdmin = ItemControl.instance.herosmod.Call("HasPermission", Main.myPlayer, ItemControl.heropermission) is bool result && result;
+                if (Karl.Whitelist)
+                {
+                    if (lastupdate == null)
+                    {
+                        lastupdate = DateTime.UtcNow;
+                        try
+                        {
+                            isAdmin = ItemControl.instance.herosmod.Call("HasPermission", Main.myPlayer, ItemControl.heropermission) is bool result && result;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("test");
+                        }
+                    }
+                    if (lastupdate.AddSeconds(whitelistintervall) < DateTime.UtcNow)
+                    {
+                        lastupdate = DateTime.UtcNow;
+                        isAdmin = ItemControl.instance.herosmod.Call("HasPermission", Main.myPlayer, ItemControl.heropermission) is bool result && result;
+                    }
+                }
+                else
+                {
+                    isAdmin = false;
+                }
             }
 
             if (!isAdmin)
@@ -79,6 +100,7 @@ namespace ItemControl
                             item.TurnToAir();
                         }
                     }
+                    Timer2 = 0;
                 }
                 Timer2++;
             }
