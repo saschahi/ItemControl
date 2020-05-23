@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ModLoader.Config;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
 using System;
 
 namespace ItemControl

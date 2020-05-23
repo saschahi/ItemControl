@@ -1,13 +1,5 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader.Config;
-using Terraria;
-using Terraria.ID;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using Terraria.ModLoader;
 
 namespace ItemControl
@@ -19,12 +11,6 @@ namespace ItemControl
         // tModLoader will automatically populate a public static field named Instance with the active instance of this ModConfig. (It will unload it too.)
         // This reduces code from "mod.GetConfig<ExampleConfigServer>().DisableExampleWings" to "ExampleConfigServer.Instance.DisableExampleWings". It's just a style choice.
         public static ItemConfig Instance;
-
-        //Not Sure how to implement that one without major performanceimpact yet...
-
-        //[Label("Check Admins?")]
-        //[Tooltip("Do People with HEROsMod Permission to change banned items have their inventories checked too? (does nothing without HEROsMod)")]
-        //public bool checkAdmins { get; set; } = new bool();
 
         [Label("Send Item Banned message?")]
         [Tooltip("Enable/Disable the 'This Item is Banned' Message.")]
