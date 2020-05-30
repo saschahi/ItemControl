@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader;
+using System.ComponentModel;
 
 namespace ItemControl
 {
@@ -23,6 +24,11 @@ namespace ItemControl
         [Label("Whitelist Administrators?")]
         [Tooltip("Allows Itemcontrol-Admins to bypass the check")]
         public bool Whitelist { get; set; } = new bool();
+
+        [Label("Check Items on ground too?")]
+        [Tooltip("If Items on the ground should also be checked for being banned")]
+        [DefaultValue(false)]
+        public bool GroundCheck { get; set; } = new bool();
 
         [Label("BEWARE")]
         [Tooltip("Before a Administrator logs into herosmod, he is considered to be NOT an Admin. Items can still be removed this way.")]

@@ -99,6 +99,24 @@ namespace ItemControl
                             item.TurnToAir();
                         }
                     }
+
+                    if (Karl.GroundCheck)
+                    {
+
+                        for (int i = 0; i < Main.maxItems; i++)
+                        {
+                            if (Main.item[i].active)
+                            {
+                                test = new ItemDefinition(Main.item[i].type);
+                                if (Karl.BannedItems.Contains(test))
+                                {
+                                    Main.item[i].active = false;
+                                }
+                            }
+                        }
+                        
+
+                    }
                     Timer2 = 0;
                 }
                 Timer2++;
