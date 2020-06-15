@@ -11,7 +11,7 @@ namespace ItemControl
 
         // tModLoader will automatically populate a public static field named Instance with the active instance of this ModConfig. (It will unload it too.)
         // This reduces code from "mod.GetConfig<ExampleConfigServer>().DisableExampleWings" to "ExampleConfigServer.Instance.DisableExampleWings". It's just a style choice.
-        public static ItemConfig Instance;
+        //public static ItemConfig Instance;
 
         [Label("Send Item Banned message?")]
         [Tooltip("Enable/Disable the 'This Item is Banned' Message.")]

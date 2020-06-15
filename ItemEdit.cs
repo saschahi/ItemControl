@@ -12,7 +12,7 @@ namespace ItemControl
         public static ItemConfig Karl = new ItemConfig();
         public static int intervall = 30;
         public static int whitelistintervall = 10;
-        public static DateTime lastupdate;
+        public static DateTime lastupdate = new DateTime();
         public bool isAdmin;
 
         public override void PreUpdate()
@@ -114,13 +114,20 @@ namespace ItemControl
                                 }
                             }
                         }
-                        
-
                     }
                     Timer2 = 0;
                 }
                 Timer2++;
             }
+        }
+
+        public static void Unload()
+        {
+            Karl = null;
+            intervall = 30;
+            Timer2 = 0;
+            whitelistintervall = 10;
+            lastupdate = new DateTime();
         }
     }
 }

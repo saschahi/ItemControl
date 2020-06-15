@@ -22,6 +22,7 @@ namespace ItemControl
             instance = null;
             herosmod = null;
             hasPermission = false;
+            ItemEdit.Unload();
         }
 
 
