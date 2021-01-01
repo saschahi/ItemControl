@@ -1,4 +1,4 @@
 displayName = Item Controll
 author = Saschahi
-version = 1.2.5
+version = 1.2.6
 homepage = https://discord.gg/9dauEnQ

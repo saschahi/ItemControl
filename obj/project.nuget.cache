@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5xiGZEG2SywnsYvZMf5ph4KgFapS40++JBmdviHWVQBFNSptiejTLs8bQnDKVm40tAI/a2xhAJ1aG2ndo6pBJQ==",
+  "dgSpecHash": "x6ahutnDqHVT0snnKz8JOZEuauupPjBfrzpVAALHClgQcv56ahBphKhw7VnRJpi6beouXlMaqEJzbziMIK9APw==",
   "success": true,
-  "projectFilePath": "G:\\Sascha\\Dokumente\\My Games\\Terraria\\ModLoader\\Mod Sources\\ItemControl\\ItemControl.csproj",
+  "projectFilePath": "E:\\Sascha\\Dokumente\\My Games\\Terraria\\ModLoader\\Mod Sources\\ItemControl\\ItemControl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Saschahi\\.nuget\\packages\\tmodloader.codeassist\\0.1.1\\tmodloader.codeassist.0.1.1.nupkg.sha512"
   ],

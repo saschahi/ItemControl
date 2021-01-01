@@ -30,3 +30,15 @@ bin/Debug/net45/tModLoader.exe
 obj/Debug/net45/ItemControl.csprojAssemblyReference.cache
 obj/Debug/net45/ItemControl.csprojAssemblyReference.cache
 .vs/ItemControl/v16/.suo
+.vs/ItemControl/DesignTimeBuild/.dtbcache.v2
+.vs/ItemControl/v16/.suo
+bin/Debug/net45/tModLoader.exe
+bin/Debug/net45/tModLoader.pdb
+bin/Debug/net45/tModLoader.xml
+obj/Debug/net45/.NETFramework,Version=v4.5.AssemblyAttributes.cs
+obj/Debug/net45/ItemControl.csproj.FileListAbsolute.txt
+obj/Debug/net45/ItemControl.csprojAssemblyReference.cache
+obj/ItemControl.csproj.nuget.dgspec.json
+obj/ItemControl.csproj.nuget.g.props
+obj/project.assets.json
+obj/project.nuget.cache
