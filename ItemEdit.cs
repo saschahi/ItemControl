@@ -110,23 +110,16 @@ namespace ItemControl
 
                         if (Karl.BannedItems.Contains(helper))
                         {
-                            if (/*helper.name == "" ||*/ helper.name == null)
+                            if (Karl.sendMessages)
                             {
-                                if (Karl.sendMessages)
-                                {
-                                    Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
-                                }
-                                Main.mouseItem.TurnToAir();
+                                Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
                             }
+                            Main.mouseItem.TurnToAir();
                         }
 
                         foreach (var item in player.armor)
                         {
                             helper = new ItemDefinition(item.type);
-                            if (/*helper.name == "" ||*/ helper.name == null)
-                            {
-                                continue;
-                            }
                             if (Karl.BannedItems.Contains(helper))
                             {
                                 if (Karl.sendMessages)
