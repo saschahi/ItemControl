@@ -73,6 +73,8 @@ namespace ItemControl
                 }
             }
 
+            
+
             ItemDefinition helper = new ItemDefinition();
 
             if (Timer2 >= intervall)
@@ -86,9 +88,19 @@ namespace ItemControl
                             helper = new ItemDefinition(item.type);
                             if (Karl.BannedItems.Contains(helper))
                             {
+                                if (item.IsAir)
+                                {
+                                    ItemDefinition helper2 = new ItemDefinition();
+                                    foreach (var item2 in Karl.BannedItems.FindAll(x => x.name == ""))
+                                    {
+                                        Karl.BannedItems.Remove(item2);
+                                    }                                 
+                                    Karl.BannedItems.Remove(helper2);
+                                    continue;
+                                }
                                 if (Karl.sendMessages)
                                 {
-                                    Main.NewText(item.Name + " is banned", Color.Red);
+                                    Main.NewText(item.Name + " is banned 1", Color.Red);
                                 }
                                 item.TurnToAir();
                             }
@@ -98,21 +110,28 @@ namespace ItemControl
 
                         if (Karl.BannedItems.Contains(helper))
                         {
-                            if (Karl.sendMessages)
+                            if (/*helper.name == "" ||*/ helper.name == null)
                             {
-                                Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
+                                if (Karl.sendMessages)
+                                {
+                                    Main.NewText(Main.mouseItem.Name + " is banned 2", Color.Red);
+                                }
+                                Main.mouseItem.TurnToAir();
                             }
-                            Main.mouseItem.TurnToAir();
                         }
 
                         foreach (var item in player.armor)
                         {
                             helper = new ItemDefinition(item.type);
+                            if (/*helper.name == "" ||*/ helper.name == null)
+                            {
+                                continue;
+                            }
                             if (Karl.BannedItems.Contains(helper))
                             {
                                 if (Karl.sendMessages)
                                 {
-                                    Main.NewText(item.Name + " is banned", Color.Red);
+                                    Main.NewText(item.Name + " is banned 3", Color.Red);
                                 }
                                 item.TurnToAir();
                             }
