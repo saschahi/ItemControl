@@ -100,7 +100,7 @@ namespace ItemControl
                                 }
                                 if (Karl.sendMessages)
                                 {
-                                    Main.NewText(item.Name + " is banned 1", Color.Red);
+                                    Main.NewText(item.Name + " is banned", Color.Red);
                                 }
                                 item.TurnToAir();
                             }
@@ -114,7 +114,7 @@ namespace ItemControl
                             {
                                 if (Karl.sendMessages)
                                 {
-                                    Main.NewText(Main.mouseItem.Name + " is banned 2", Color.Red);
+                                    Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
                                 }
                                 Main.mouseItem.TurnToAir();
                             }
@@ -131,7 +131,7 @@ namespace ItemControl
                             {
                                 if (Karl.sendMessages)
                                 {
-                                    Main.NewText(item.Name + " is banned 3", Color.Red);
+                                    Main.NewText(item.Name + " is banned", Color.Red);
                                 }
                                 item.TurnToAir();
                             }
