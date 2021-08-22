@@ -97,7 +97,7 @@ namespace ItemControl
             }
             if (Karl.Whitelist && isAdmin)
             {
-                return true;
+                return base.AltFunctionUse(item, player);
             }
 
             if (item.IsAir)
@@ -117,7 +117,7 @@ namespace ItemControl
                 return false;
             }
 
-            return true;
+            return base.AltFunctionUse(item, player);
         }
 
         public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
