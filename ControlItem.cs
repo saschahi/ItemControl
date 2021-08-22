@@ -31,7 +31,7 @@ namespace ItemControl
             }
             if (Karl.Whitelist && isAdmin)
             {
-                return true;
+                return base.CanUseItem(item, player);
             }
 
             if (item.IsAir)
@@ -51,7 +51,7 @@ namespace ItemControl
                 return false;
             }
             
-            return true;
+            return base.CanUseItem(item,player);
         }
 
         public override bool OnPickup(Item item, Player player)
@@ -65,7 +65,7 @@ namespace ItemControl
                 }
                 if (Karl.Whitelist && isAdmin)
                 {
-                    return true;
+                    return base.OnPickup(item, player);
                 }
 
                 if (item.IsAir)
@@ -84,7 +84,7 @@ namespace ItemControl
                     }
                     return false;
                 }
-                return true;
+                return base.OnPickup(item, player);
             }
             return base.OnPickup(item, player);
         }
@@ -128,7 +128,7 @@ namespace ItemControl
             }
             if (Karl.Whitelist && isAdmin)
             {
-                return true;
+                return base.Shoot(item,player,ref position,ref speedX,ref speedY,ref type,ref damage,ref knockBack);
             }
 
             if (item.IsAir)
@@ -148,7 +148,7 @@ namespace ItemControl
                 return false;
             }
 
-            return true;
+            return base.Shoot(item, player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
     }
 }
