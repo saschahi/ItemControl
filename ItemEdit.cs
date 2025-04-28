@@ -8,38 +8,94 @@ namespace ItemControl
 {
     class ItemEdit : ModPlayer
     {
-        public static int Timer2 = 0;
-        public static ItemConfig Karl = new ItemConfig();
-        public static int intervall = 30;
-        public static int whitelistintervall = 10;
-        public static DateTime lastupdate = new DateTime();
-        public bool isAdmin;
+        private static int Timer2;
+        public static ItemConfig Karl;
+        public static int intervall;
+        private static int whitelistintervall;
+        private static DateTime lastupdate;
+        private static bool isAdmin;
+        private static bool firsttime;
+        private static DateTime stopbannedspam;
 
-        public override void PreUpdate()
+        public static void init()
+        {
+            Timer2 = 0;
+            intervall = 30;
+            whitelistintervall = 10;
+            lastupdate = new DateTime();
+            isAdmin = false;
+            firsttime = true;
+            stopbannedspam = new DateTime();
+        }
+
+        public static void unload()
+        {
+            Timer2 = new int();
+            Karl = null;
+            intervall = new int();
+            whitelistintervall = new int();
+            lastupdate = new DateTime();
+            isAdmin = new bool();
+            firsttime = new bool();
+            stopbannedspam = new DateTime();
+        }
+
+
+        public override bool CanUseItem(Item item)
         {
             if (Karl == null)
             {
                 Karl = ModContent.GetInstance<ItemConfig>();
+                if (Karl == null)
+                {
+                    Main.NewText("A Severe Error has occured withing ItemControl", Color.Red);
+                    return false;
+                }
+            }
+
+            if(Karl.Whitelist && isAdmin)
+            {
+                return base.CanUseItem(item);
+            }
+
+            //ItemDefinition Helper = new ItemDefinition(item.type);
+            if (Karl.BannedItems.Find(x => x.Type == item.type) != null)
+            {
+                if(Karl.sendMessages && stopbannedspam.AddSeconds(2) < DateTime.UtcNow)
+                {
+                    stopbannedspam = DateTime.UtcNow;
+                    Main.NewText(item.Name + " is banned", Color.Red);
+                }
+                return false;
+            }
+            return base.CanUseItem(item);
+        }
+
+        public override void PreUpdate()
+        {
+            if (firsttime)
+            {
+                Karl = ModContent.GetInstance<ItemConfig>();
                 lastupdate = DateTime.UtcNow;
                 intervall = Karl.intervall;
+                //I fucking hate how inconsistens some of this can be
+                firsttime = false;
             }
 
             if (ItemControl.instance.herosmod != null)
             {
                 if (Karl.Whitelist)
                 {
-                    if (lastupdate == null)
+                    /*lastupdate = DateTime.UtcNow;
+                    try
                     {
-                        lastupdate = DateTime.UtcNow;
-                        try
-                        {
-                            isAdmin = ItemControl.instance.herosmod.Call("HasPermission", Main.myPlayer, ItemControl.heropermission) is bool result && result;
-                        }
-                        catch
-                        {
-                            Console.WriteLine("test");
-                        }
+                        isAdmin = ItemControl.instance.herosmod.Call("HasPermission", Main.myPlayer, ItemControl.heropermission) is bool result && result;
                     }
+                    catch
+                    {
+                        Console.WriteLine("test");
+                    }*/
+                    
                     if (lastupdate.AddSeconds(whitelistintervall) < DateTime.UtcNow)
                     {
                         lastupdate = DateTime.UtcNow;
@@ -54,74 +110,82 @@ namespace ItemControl
 
             if (!isAdmin)
             {
-                if (Timer2 >= intervall)
+                if (!Karl.allowPossession)
                 {
-                    if (Karl == null)
+                    if (Timer2 >= intervall)
                     {
-                        Karl = ModContent.GetInstance<ItemConfig>();
-                    }
-
-                    ItemDefinition test = new ItemDefinition();
-
-                    foreach (var item in player.inventory)
-                    {
-                        test = new ItemDefinition(item.type);
-                        if (Karl.BannedItems.Contains(test))
+                        if (Karl == null)
                         {
-                            if (Karl.sendMessages)
-                            {
-                                Main.NewText(item.Name + " is banned", Color.Red);
-                            }
-                            item.TurnToAir();
+                            //yes, getting the config is THAT inconsistent sometimes
+                            Karl = ModContent.GetInstance<ItemConfig>();
                         }
-                    }
 
-                    test = new ItemDefinition(Main.mouseItem.type);
-
-                    if (Karl.BannedItems.Contains(test))
-                    {
-                        if (Karl.sendMessages)
+                        //ItemDefinition test = new ItemDefinition();
+                        foreach (var item in Player.inventory)
+                        //foreach (var item in player.inventory)
                         {
-                            Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
-                        }
-                        Main.mouseItem.TurnToAir();
-                    }
-
-                    foreach (var item in player.armor)
-                    {
-                        test = new ItemDefinition(item.type);
-                        if (Karl.BannedItems.Contains(test))
-                        {
-                            if (Karl.sendMessages)
+                            //test = new ItemDefinition(item.type);
+                            if (Karl.BannedItems.Find(x => x.Type == item.type) != null)
                             {
-                                Main.NewText(item.Name + " is banned", Color.Red);
-                            }
-                            item.TurnToAir();
-                        }
-                    }
-
-                    if (Karl.GroundCheck)
-                    {
-
-                        for (int i = 0; i < Main.maxItems; i++)
-                        {
-                            if (Main.item[i].active)
-                            {
-                                test = new ItemDefinition(Main.item[i].type);
-                                if (Karl.BannedItems.Contains(test))
+                                if (Karl.sendMessages)
                                 {
-                                    Main.item[i].active = false;
+                                    Main.NewText(item.Name + " is banned", Color.Red);
+                                }
+                                item.TurnToAir();
+                            }
+                        }
+
+                        //test = new ItemDefinition(Main.mouseItem.type);
+
+                        if (Karl.BannedItems.Find(x => x.Type == Main.mouseItem.type) != null)
+                        {
+                            if (Karl.sendMessages)
+                            {
+                                Main.NewText(Main.mouseItem.Name + " is banned", Color.Red);
+                            }
+                            Main.mouseItem.TurnToAir();
+                        }
+                        foreach (var item in Player.armor)
+                        //foreach (var item in player.armor)
+                        {
+                            //test = new ItemDefinition(item.type);
+                            if (Karl.BannedItems.Find(x => x.Type == item.type) != null)
+                            {
+                                if (Karl.sendMessages)
+                                {
+                                    Main.NewText(item.Name + " is banned", Color.Red);
+                                }
+                                item.TurnToAir();
+                            }
+                        }
+
+                        if (Karl.GroundCheck)
+                        {
+                            for (int i = 0; i < Main.maxItems; i++)
+                            {
+                                if (Main.item[i].active)
+                                {
+                                    //test = new ItemDefinition(Main.item[i].type);
+                                    if (Karl.BannedItems.Find(x => x.Type == Main.item[i].type) != null)
+                                    {
+                                        Main.item[i].active = false;
+                                    }
                                 }
                             }
                         }
+                        Timer2 = 0;
                     }
-                    Timer2 = 0;
+                    Timer2++;
                 }
-                Timer2++;
             }
         }
+        public override void OnEnterWorld()
+        {
+            Karl = ModContent.GetInstance<ItemConfig>();
+            intervall = Karl.intervall;
+        }
 
-        public static void Unload()
+        public override void Unload()
         {
             Karl = null;
             intervall = 30;

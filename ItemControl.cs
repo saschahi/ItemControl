@@ -1,6 +1,7 @@
 using Terraria.ModLoader;
 using Terraria;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ItemControl
 {
@@ -21,12 +22,12 @@ namespace ItemControl
         {
             instance = null;
             herosmod = null;
-            hasPermission = false;
-            ItemEdit.Unload();
+            hasPermission = new bool();
+            ItemEdit.unload();
         }
 
 
-        public override void PostAddRecipes()
+        public override void PostAddRecipes()/* tModPorter Note: Removed. Use ModSystem.PostAddRecipes */
         {
             SetupHerosMod();
 
@@ -35,7 +36,12 @@ namespace ItemControl
         public override void Load()
         {
             instance = this;
-            herosmod = ModLoader.GetMod("HEROsMod");
+
+            if (ModLoader.TryGetMod("HEROsMod", out Mod herosMod))
+            {
+                herosmod = ModLoader.GetMod("HEROsMod");
+            }
+            ItemEdit.init();
         }
 
         public ItemControl GetInstance()
@@ -54,7 +60,7 @@ namespace ItemControl
                     heropermission,
                     // Permission Display Name
                     heropermissiondisplayname);
-
+                /*
                 if (!Main.dedServ)
                 {
                     herosmod.Call(
@@ -63,7 +69,8 @@ namespace ItemControl
                         // Name of Permission governing the availability of the button/tool
                         heropermission,
                         // Texture of the button. 38x38 is recommended for HERO's Mod. Also, a white outline on the icon similar to the other icons will look good.
-                        GetTexture("ItemControl"),
+                        //GetTexture("ItemControl"),
+                        Assets.Request<Texture2D>("ItemControl"),
                         // A method that will be called when the button is clicked
                         (Action)NPCControlButtonPressed,
                         // A method that will be called when the player's permissions have changed
@@ -71,7 +78,7 @@ namespace ItemControl
                         // A method that will be called when the button is hovered, returning the Tooltip
                         (Func<string>)NPCControlTooltip
                     );
-                }
+                }*/
             }
         }
 
@@ -94,12 +101,5 @@ namespace ItemControl
         {
             return hasPermission;
         }
-
-
-
-
-
-
-
     }
 }

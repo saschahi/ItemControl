@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Terraria.Localization;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader;
 using System.ComponentModel;
@@ -13,6 +14,10 @@ namespace ItemControl
         // This reduces code from "mod.GetConfig<ExampleConfigServer>().DisableExampleWings" to "ExampleConfigServer.Instance.DisableExampleWings". It's just a style choice.
         //public static ItemConfig Instance;
 
+        [Label("Allow Possession?")]
+        [Tooltip("Allow people to own these Items, but not use them (May not work with certain Modded Items. Test it extensively beforehand)")]
+        public bool allowPossession { get; set; } = new bool();
+
         [Label("Send Item Banned message?")]
         [Tooltip("Enable/Disable the 'This Item is Banned' Message.")]
         public bool sendMessages { get; set; } = new bool();
@@ -22,7 +27,7 @@ namespace ItemControl
         public int intervall { get; set; } = new int();
 
         [Label("Whitelist Administrators?")]
-        [Tooltip("Allows Itemcontrol-Admins to bypass the check")]
+        [Tooltip("Skips checking people that have access to NPC Control Admin Privileges through HEROsMod")]
         public bool Whitelist { get; set; } = new bool();
 
         [Label("Check Items on ground too?")]
@@ -39,7 +44,7 @@ namespace ItemControl
 
         public List<ItemDefinition> BannedItems { get; set; } = new List<ItemDefinition>();
 
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
+        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref NetworkText message)
         {
             if (ItemControl.instance.herosmod != null)
             {

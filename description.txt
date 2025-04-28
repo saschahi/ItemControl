@@ -1,9 +1,10 @@
 Welcome to my 2nd Mod! If you like this mod you're sure to like my other Mod "NPC Control"!
 
-At the moment this mod has only 1 Feature:
-- Ban Items of your choosing (They're getting deleted and a Chat Message pops up)
+At the moment this mod has 2 Feature:
+- Ban Items of your choosing (They're getting deleted and a optional Chat Message pops up)
+- **New** Items can also just be banned from being used, but still allow their possesion/crafting of those items.
 
-Hope this will help some Server Owners with their "Item Frame" problems and such.
+Hope this will help some Server Owners with their "Item Frame" problems and similar issues.
 
 Also compatible with Items from other mods!
 
@@ -14,5 +15,6 @@ How to use:
 4. Add Items of your choosing to the list
 5. Click Save after you put the banned items on the list.
 
-Planned features
-- Excempts for getting checked
+And the best part?
+It's compatible with HEROsMod! If it's detected to be installed on your Server, we add our own Permission to HEROsMods Permission System!
+Now the People with permission can change what's banned and what's not.
